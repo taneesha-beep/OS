@@ -1,0 +1,38 @@
+#!/bin/bash
+echo "welcomeeee"
+echo "1. addition"
+echo "2. subtraction"
+echo "3. division"
+echo "4. multiplication"
+echo "enter your choice: "
+read ch
+
+echo "great! enter 2 numbers: "
+read ch1
+read ch2
+
+if [ $ch -eq 1 ]
+ then
+ echo "$((ch1 + ch2))"
+ 
+elif [ $ch -eq 2 ]
+ then
+ echo "$((ch1 - ch2))"
+
+elif [ $ch -eq 3 ]
+ then
+ if [ $ch2 -eq 0 ]
+ then
+ echo "sorry! cannot be divided by zero. try again."
+ 
+else
+ echo "$((ch1 / ch2))"
+fi
+
+elif [ $ch -eq 4 ]
+ then
+ echo "$((ch1 * ch2))"
+
+else 
+ echo "no operation found!!!!"
+fi
