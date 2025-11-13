@@ -1,0 +1,60 @@
+#!/bin/bash
+
+create_directory() {
+    read -p "Enter directory name: " dir_name
+    mkdir "$dir_name" && echo "Directory '$dir_name' created."
+}
+
+create_file() {
+    read -p "Enter file name: " file_name
+    read -p "Enter directory to create it in: " dir
+    touch "$dir/$file_name" && echo "File '$file_name' created in '$dir'."
+}
+
+delete_directory() {
+    read -p "Enter directory name to delete: " dir_name
+    rmdir "$dir_name" && echo "Directory '$dir_name' deleted." || echo "Directory '$dir_name' not empty or does not exist."
+}
+
+delete_file() {
+    read -p "Enter file name to delete: " file_name
+    rm "$file_name" && echo "File '$file_name' deleted." || echo "File '$file_name' not found."
+}
+
+copy() {
+    read -p "Enter the file or directory to copy: " source
+    read -p "Enter the destination path: " dest
+    cp -r "$source" "$dest" && echo "'$source' copied to '$dest'." || echo "Failed to copy '$source'."
+}
+
+rename() {
+    read -p "Enter current name: " old_name
+    read -p "Enter new name: " new_name
+    mv "$old_name" "$new_name" && echo "'$old_name' renamed to '$new_name'." || echo "Failed to rename '$old_name'."
+}
+
+list_contents() {
+    read -p "Enter directory name (or press Enter for current): " dir_name
+    ls ${dir_name:-.}
+}
+
+echo "creating directory"
+create_directory
+
+echo "creating file"
+create_file
+
+echo "listing contents"
+list_contents
+
+echo "copying file/directory"
+copy
+
+echo "renaming file/directory"
+rename
+
+echo "deleting file"
+delete_file
+
+echo "deleting directory"
+delete_directory
